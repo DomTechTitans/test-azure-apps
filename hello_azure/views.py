@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import time
+from datetime import datetime
 
 def index(request):
     print('Request for index page received')
@@ -17,7 +17,7 @@ def hello(request):
             return redirect('index')
         else:
             print("Request for hello page received with name=%s" % name)
-            context = {'name': name, 'time' : time.time() }
+            context = {'name': name, 'time' : datetime.now() }
             return render(request, 'hello_azure/hello.html', context)
     else:
         return redirect('index')
